@@ -23,8 +23,7 @@ public class AnotherActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recycler_id);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        myAdapter= new MyAdapter();
-        myAdapter.setData(MainActivity.itemArrayList);
+        myAdapter= new MyAdapter(MainActivity.itemArrayList);
         recyclerView.setAdapter(myAdapter);
     }
 }

@@ -13,12 +13,11 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    ArrayList<Item> data = new ArrayList<>();
+    ArrayList<Item> data;
 
-    public void setData(ArrayList<Item> data) {
-        this.data = data;
+    public MyAdapter(ArrayList<Item> _data){
+        this.data=_data;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
