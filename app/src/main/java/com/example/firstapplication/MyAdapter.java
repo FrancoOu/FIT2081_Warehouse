@@ -35,12 +35,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         Boolean frozen = data.get(position).getFrozen();
         if (frozen){
-            holder.frozen.setText("yes");
+            holder.frozen.setText("Yes");
         }
         else {
-            holder.frozen.setText("no");
+            holder.frozen.setText("No");
         }
         holder.location.setText(data.get(position).getLocation());
+        holder.counter.setText("Item: "+(position+1));
     }
 
     @Override
@@ -55,6 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         TextView description;
         TextView frozen;
         TextView location;
+        TextView counter;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +66,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             description = itemView.findViewById(R.id.card_description);
             frozen = itemView.findViewById(R.id.card_frozen);
             location = itemView.findViewById(R.id.card_location);
+            counter=itemView.findViewById(R.id.item_counter);
         }
     }
 }

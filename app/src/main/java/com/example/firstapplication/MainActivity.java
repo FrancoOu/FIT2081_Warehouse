@@ -183,10 +183,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_6:
                     startActivity(new Intent(MainActivity.this,AnotherActivity.class));
+                    //finish();
                     break;
-//                case R.id.nav_7:
-//                    itemArrayList.clear();
-//                    break;
+
 
 
 
