@@ -18,8 +18,8 @@ public interface ItemDao {
     @Insert
     void addItem(Item item);
 
-    @Query("delete from items where itemName= :name")
-    void deleteItem(String name);
+    @Query("delete from items where itemId= :id")
+    void deleteItem(int id);
 
     @Query("delete FROM items")
     void deleteAllItems();

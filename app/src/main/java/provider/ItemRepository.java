@@ -26,5 +26,9 @@ public class ItemRepository {
             itemDao.deleteAllItems();
         });
     }
-
+    void deleteItem(int id){
+        ItemDatabase.databaseWriteExecutor.execute(()->{
+            itemDao.deleteItem(id);
+        });
+    }
 }

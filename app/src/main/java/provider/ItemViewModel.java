@@ -21,4 +21,5 @@ public class ItemViewModel extends AndroidViewModel {
 
     public void insert(Item item){repository.insert(item);}
     public void deleteAll(){repository.deleteAll();}
+    public void deleteItem(int id){repository.deleteItem(id);}
 }

@@ -1,9 +1,13 @@
 package com.example.firstapplication;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +26,7 @@ public class AnotherActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar_2);
 
+
         setSupportActionBar(toolbar);
 
         recyclerView=findViewById(R.id.recycler_id);
@@ -34,5 +39,6 @@ public class AnotherActivity extends AppCompatActivity {
             myAdapter.setData(newData);
             myAdapter.notifyDataSetChanged();
         });
+
     }
 }
