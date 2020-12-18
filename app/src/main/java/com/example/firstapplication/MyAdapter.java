@@ -8,14 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+import java.util.List;
+
+import provider.Item;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    ArrayList<Item> data;
+    List<Item> data;
 
-    public MyAdapter(ArrayList<Item> _data){
+    public void setData(List<Item> _data){
         this.data=_data;
     }
     @NonNull
@@ -46,6 +47,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
+        if (data==null)
+            return 0;
         return data.size();
     }
 

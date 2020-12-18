@@ -25,12 +25,17 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+
+import provider.Item;
+import provider.ItemViewModel;
 
 public class MainActivity extends AppCompatActivity {
     EditText itemName;
@@ -49,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList sourceData;
     ListView items;
-    static ArrayList<Item> itemArrayList;
+    private ItemViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +72,12 @@ public class MainActivity extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         saveButton = findViewById(R.id.savebutton);
         clearButton = findViewById(R.id.clearbutton);
-        itemArrayList=new ArrayList<>();
+
         itemName.requestFocus();
+
+        viewModel = new ViewModelProvider(this).get(ItemViewModel.class);
+
+
 
         //set listeners for buttons
         fab.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +195,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this,AnotherActivity.class));
                     //finish();
                     break;
+                case R.id.nav_7:
+                    viewModel.deleteAll();
+                    break;
 
 
 
@@ -212,10 +225,10 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("location", location.getText().toString());
         editor.putBoolean("frozen", frozen.isChecked());
         editor.commit();
-        itemArrayList.add(new Item(itemName.getText().toString(),Integer.parseInt(quantity.getText().toString()),
+        Item item = new Item(itemName.getText().toString(),Integer.parseInt(quantity.getText().toString()),
                 Double.parseDouble(cost.getText().toString()),
-                description.getText().toString(),frozen.isChecked(),location.getText().toString()));
-
+                description.getText().toString(),frozen.isChecked(),location.getText().toString());
+        viewModel.insert(item);
     }
 
     public void clear() {
