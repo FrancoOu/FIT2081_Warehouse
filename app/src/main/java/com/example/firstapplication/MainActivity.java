@@ -16,6 +16,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList sourceData;
     ListView items;
     private ItemViewModel viewModel;
+    View view;
+    int x;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,39 @@ public class MainActivity extends AppCompatActivity {
         fab = findViewById(R.id.fab);
         saveButton = findViewById(R.id.savebutton);
         clearButton = findViewById(R.id.clearbutton);
+        view=findViewById(R.id.constraint_layout);
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int i = event.getActionMasked();
+
+                switch (i){
+                    case(MotionEvent.ACTION_DOWN):
+                        x = (int)event.getRawX();
+                        return true;
+                    case (MotionEvent.ACTION_MOVE):
+
+                        return true;
+                    case (MotionEvent.ACTION_UP):
+                        float pos=event.getRawX();
+                        if (pos-x>100){
+                            saveItem();
+                        }else if (x-pos>100){
+                            clear();
+                        }
+                        return true;
+                    default:
+                        return false;
+                }
+
+
+            }
+
+        });
+
+
+
+
 
         itemName.requestFocus();
 
